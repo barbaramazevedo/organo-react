@@ -1,7 +1,16 @@
 import './Form.css';
 import TextField from '../TextField';
+import DropDown from '../DropDown';
 
 const form = () => {
+
+    const teams = [
+        'Água',
+        'Ar',
+        'Digital',
+        'Fogo',
+        'Terra'
+    ]
     return (
         <section className="form-container">
             <form>
@@ -9,6 +18,7 @@ const form = () => {
                 <TextField label="Name" placeholder="Enter your name"/>
                 <TextField label="Position" placeholder="Enter your position"/>
                 <TextField label="Image" placeholder="Enter image address"/>
+                <DropDown label="Team"itens={teams}></DropDown>
             </form>
         </section>
     )
