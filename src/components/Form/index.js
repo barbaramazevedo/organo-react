@@ -1,6 +1,7 @@
 import './Form.css';
 import TextField from '../TextField';
 import DropDown from '../DropDown';
+import Button from '../Button';
 
 const form = () => {
 
@@ -19,6 +20,9 @@ const form = () => {
                 <TextField label="Position" placeholder="Enter your position"/>
                 <TextField label="Image" placeholder="Enter image address"/>
                 <DropDown label="Team"itens={teams}></DropDown>
+                <Button>
+                    Create Card
+                </Button>
             </form>
         </section>
     )
