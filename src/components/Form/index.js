@@ -12,14 +12,20 @@ const form = () => {
         'Fogo',
         'Terra'
     ]
+
+    const whenSave = (event) => {  
+        event.preventDefault();
+        console.log('Form submitted!');
+    }
+
     return (
         <section className="form-container">
-            <form>
+            <form onSubmit={whenSave}>
                 <h2>Fill in the data to create the employee card</h2>
-                <TextField label="Name" placeholder="Enter your name"/>
-                <TextField label="Position" placeholder="Enter your position"/>
+                <TextField required={true} label="Name" placeholder="Enter your name"/>
+                <TextField required={true} label="Position" placeholder="Enter your position"/>
                 <TextField label="Image" placeholder="Enter image address"/>
-                <DropDown label="Team"itens={teams}></DropDown>
+                <DropDown required={true} label="Team"itens={teams}></DropDown>
                 <Button>
                     Create Card
                 </Button>
