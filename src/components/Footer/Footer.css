@@ -1,0 +1,30 @@
+.footer {
+    max-width: 100%;
+    background-color: #6278F7;
+    color: #FFF;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px;
+    text-align: center;
+}
+
+.icons {
+    display: flex;
+    gap: 24px;
+}
+
+.icons .icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.icons .icon:hover {
+    transform: scale(1.2);
+}
+
+.developer p {
+    font-size: 16px;
+    color: #FFF;
+}
