@@ -12,15 +12,44 @@ function App() {
     setEmployees([...employees, employee]);
   }
 
+  const teams = [
+    {
+      name: 'Água',
+      primaryColor: '#82CFFA',
+      secondaryColor: '#E8F8FF'
+    },
+    {
+      name: 'Ar',
+      primaryColor: '#57C278',
+      secondaryColor: '#D9F7E9'
+    },
+    {
+      name: 'Digital',
+      primaryColor: '#FFBA05',
+      secondaryColor: '#FFF5D9'
+    },
+    {
+      name: 'Fogo',
+      primaryColor: '#E06B69',
+      secondaryColor: '#FDE7E8'
+    },
+    {
+      name: 'Terra',
+      primaryColor: '#FF8A29',
+      secondaryColor: '#FFEEDF'
+    }
+  ]
+
   return (
     <div className="App">
       <Banner />
       <Form toTheNewEmployeeAdded={toTheNewEmployeeAdded => setEmployees}/>
-      <Team name="Água"/>
-      <Team name="Ar"/>
-      <Team name="Digital"/>
-      <Team name="Fogo"/>
-      <Team name="Terra"/>
+
+        {teams.map(team => <Team 
+                              key={team.name} 
+                              name={team.name} 
+                              primaryColor={team.primaryColor}
+                              secondaryColor={team.secondaryColor}/>)}
     </div>
   );
 }
