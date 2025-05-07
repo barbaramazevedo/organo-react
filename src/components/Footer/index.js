@@ -2,7 +2,7 @@ import './Footer.css';
 
 export const Footer = (props) => {
     return (
-        <footer className="footer">
+        <section className="bottom">
             <section className="icons">
                 <ul>
                     <li>
@@ -28,7 +28,7 @@ export const Footer = (props) => {
             <section>
                 <p>Developed by Bárbara Azevedo.</p>
             </section>
-        </footer>
+        </section>
     )
 }
 
