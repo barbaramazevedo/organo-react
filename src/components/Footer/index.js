@@ -6,17 +6,17 @@ export const Footer = (props) => {
             <section className="icons">
                 <ul>
                     <li>
-                        <a href="https://facebook.com" target="_blank">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                             <img src="/images/fb.png" alt="Facebook" className="icon" />
                         </a>
                     </li>    
                     <li>
-                        <a href="https://linkedin.com" target="_blank">
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
                             <img src="/images/tw.png" alt="LinkedIn" className="icon" />
                         </a>
                     </li> 
                     <li>
-                        <a href="https://instagram.com" target="_blank">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
                             <img src="/images/ig.png" alt="Instagram" className="icon" />
                         </a>
                     </li> 
