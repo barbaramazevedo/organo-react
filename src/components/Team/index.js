@@ -1,24 +1,26 @@
 import Employee from '../Employee';
 import './Team.css';
 
-const Team = (props) => {
+const Team = ({team, employees, whenDeleting}) => {
 
-    const css = { backgroundColor: props.secondaryColor }
+    const css = { 
+        backgroundImage: 'url(/imagens/fundo.png)', 
+        backgroundColor: team.secondaryColor 
+    };
 
     return (
-        props.employees.length > 0 &&
+        employees.length > 0 &&
         <section className='team' style={css}>
-            <h3 style={{ borderColor: props.primaryColor }}>{props.name}</h3>
+            <h3 style={{ borderColor: team.primaryColor }}>{team.name}</h3>
             <div className='employees'>
-                {props.employees.map(employee => (
-                    <Employee 
-                        backgroundColor={props.primaryColor}
-                        key={employee.name}
-                        name={employee.name} 
-                        position={employee.position} 
-                        image={employee.image} 
-                    />
-                ))}  
+                {employees.map((employee) => {
+                    return <Employee 
+                        key={employee.name} 
+                        employee={employee}
+                        backgroundColor={team.primaryColor}
+                        whenDeleting={whenDeleting}
+                    /> 
+                })}     
             </div>
         </section>
     )

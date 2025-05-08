@@ -4,7 +4,7 @@ import DropDown from '../DropDown';
 import Button from '../Button';
 import React, { useState } from 'react';
 
-const Form = (props) => {
+const Form = ({toTheNewEmployeeAdded, teams}) => {
 
     const[name, setName] = useState('');
     const[position, setPosition] = useState('');
@@ -13,7 +13,7 @@ const Form = (props) => {
 
     const whenSave = (event) => {  
         event.preventDefault();
-        props.toTheNewEmployeeAdded({
+        toTheNewEmployeeAdded({
             name,
             position,
             image,
@@ -49,7 +49,7 @@ const Form = (props) => {
                 <DropDown 
                     required={true} 
                     label="Team"
-                    itens={props.teamsName}
+                    itens={teams}
                     value={team}
                     toChanged={value => setTeam(value)}/>
                 <Button>
