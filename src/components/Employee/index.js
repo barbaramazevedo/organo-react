@@ -1,8 +1,10 @@
 import './Employee.css';
+import { MdOutlineClose } from "react-icons/md";
 
-const Employee = ({employee, backgroundColor}) => {
+const Employee = ({employee, backgroundColor, whenDeleting }) => {
     return(
         <div className='employee'>
+            <MdOutlineClose size={20} className="removing" onClick={whenDeleting} />
             <div className='header' style={{ backgroundColor: backgroundColor}}>
                 <img src={employee.image} alt={employee.name} />
             </div>

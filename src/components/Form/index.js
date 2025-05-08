@@ -48,7 +48,7 @@ const Form = ({toTheNewEmployeeAdded, teams}) => {
                     toChanged={value => setImage(value)}/>
                 <DropDown 
                     required={true} 
-                    label="Team"
+                    label="Teams"
                     itens={teams}
                     value={team}
                     toChanged={value => setTeam(value)}/>

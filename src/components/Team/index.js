@@ -11,6 +11,11 @@ const Team = ({team, employees, whenDeleting}) => {
     return (
         employees.length > 0 &&
         <section className='team' style={css}>
+            <input 
+                value={team.secondaryColor}
+                type='color' 
+                className='input-color'
+            />
             <h3 style={{ borderColor: team.primaryColor }}>{team.name}</h3>
             <div className='employees'>
                 {employees.map((employee) => {
