@@ -1,18 +1,17 @@
 import Employee from '../Employee';
 import './Team.css';
+import hexToRgba from 'hex-to-rgba';
 
-const Team = ({team, employees, whenDeleting}) => {
-
-    const css = { 
-        backgroundImage: 'url(/imagens/fundo.png)', 
-        backgroundColor: team.secondaryColor 
-    };
+const Team = ({team, employees, whenDeleting, changeColor}) => {
 
     return (
         employees.length > 0 &&
-        <section className='team' style={css}>
+        <section 
+            className='team' 
+            style={{backgroundImage: 'url(/imagens/fundo.png)', backgroundColor: hexToRgba(team.color, '0.3')}}>
             <input 
-                value={team.secondaryColor}
+                onChange={event => changeColor(event.target.value, team.id)}
+                value={team.color}
                 type='color' 
                 className='input-color'
             />
@@ -22,7 +21,7 @@ const Team = ({team, employees, whenDeleting}) => {
                     return <Employee 
                         key={employee.name} 
                         employee={employee}
-                        backgroundColor={team.primaryColor}
+                        backgroundColor={team.color}
                         whenDeleting={whenDeleting}
                     /> 
                 })}     
