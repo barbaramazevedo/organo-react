@@ -17,14 +17,14 @@ const Team = ({team, employees, whenDeleting, changeColor}) => {
             />
             <h3 style={{ borderColor: team.primaryColor }}>{team.name}</h3>
             <div className='employees'>
-                {employees.map((employee) => {
-                    return <Employee 
-                        key={employee.name} 
+                {employees.map((employee) => (
+                    <Employee 
+                        key={employee.id} 
                         employee={employee}
                         backgroundColor={team.color}
                         whenDeleting={whenDeleting}
                     /> 
-                })}     
+                ))}     
             </div>
         </section>
     )
