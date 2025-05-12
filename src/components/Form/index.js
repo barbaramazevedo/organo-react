@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Form.css';
 import Field from '../Field';
 import DropDown from '../DropDown';
@@ -67,7 +69,10 @@ const Form = ({ toTheNewEmployeeAdded, teams, whenCreatingTeam }) => {
                 whenCreatingTeam({ 
                     name: teamName, 
                     color: teamColor 
-                })
+                });
+                toast.success(`Team ${teamName} created successfully!`);
+                setTeamName('');
+                setTeamColor('');
             }}>
                 <h2>Fill in the data to create a new team</h2>
                 <Field 
@@ -89,8 +94,10 @@ const Form = ({ toTheNewEmployeeAdded, teams, whenCreatingTeam }) => {
                     Creat team
                 </Button>
             </form>
+            <ToastContainer position="top-center" autoClose={3000} />
         </section>
     )
 }
+<ToastContainer position="top-center" autoClose={3000} />
 
 export default Form;

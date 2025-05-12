@@ -1,7 +1,17 @@
 import './Employee.css';
-import { MdOutlineClose } from "react-icons/md";
+import { MdOutlineClose, MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
-const Employee = ({employee, backgroundColor, whenDeleting }) => {
+const Employee = ({employee, backgroundColor, whenDeleting, whenfavorited }) => {
+
+    function favorited() {
+        whenfavorited(employee.id);
+    }
+
+    const propsfavorited = {
+        size: 22,
+        onClick: favorited
+    }
+    
     return(
         <div className='employee'>
             <MdOutlineClose 
@@ -17,6 +27,12 @@ const Employee = ({employee, backgroundColor, whenDeleting }) => {
             <div className='footer'>
                 <h4>{employee.name}</h4>
                 <h5>{employee.position}</h5>
+                <div className='favorite'>
+                    {employee.favorite 
+                        ? <MdFavorite {...propsfavorited } color='#6278F7' /> 
+                        : <MdFavoriteBorder {...propsfavorited}/>
+                    }
+                </div>
             </div>
         </div>
     )

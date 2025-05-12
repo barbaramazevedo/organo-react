@@ -40,6 +40,7 @@ function App() {
   useEffect(() => {
     const initialEmployees = [
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Bárbara Azevedo',
         position: 'Software Development intern StartDB',
@@ -47,6 +48,7 @@ function App() {
         team: teams[4].name
       },
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Eduarda Groehs',
         position: 'Software Development intern StartDB',
@@ -54,6 +56,7 @@ function App() {
         team: teams[4].name
       },
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Vitória de Camargo',
         position: 'QA intern StartDB',
@@ -61,6 +64,7 @@ function App() {
         team: teams[3].name
       },
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Nicolas Berlato',
         position: 'Software Development intern StartDB',
@@ -68,6 +72,7 @@ function App() {
         team: teams[2].name
       },
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Gustavo Silva',
         position: 'Software Development intern StartDB',
@@ -75,6 +80,7 @@ function App() {
         team: teams[0].name
       },
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Suene Souza',
         position: 'Software Development intern StartDB',
@@ -82,6 +88,7 @@ function App() {
         team: teams[2].name
       },
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Rachel Pizane',
         position: 'Software Development intern StartDB',
@@ -89,6 +96,7 @@ function App() {
         team: teams[0].name
       },
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Lucas Miranda',
         position: 'QA intern StartDB',
@@ -96,6 +104,7 @@ function App() {
         team: teams[1].name
       },
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Danielly Marques',
         position: 'Software Development intern StartDB',
@@ -103,6 +112,7 @@ function App() {
         team: teams[1].name
       },
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Lucas Azevedo',
         position: 'Data intern StartDB',
@@ -110,6 +120,7 @@ function App() {
         team: teams[2].name
       },
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Ana Cagliari',
         position: 'Software Development intern StartDB',
@@ -117,6 +128,7 @@ function App() {
         team: teams[0].name
       },
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Gabriela de Castro',
         position: 'Software Development intern StartDB',
@@ -124,6 +136,7 @@ function App() {
         team: teams[0].name
       },
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Sylvia Vitória',
         position: 'Software Development intern StartDB',
@@ -131,6 +144,7 @@ function App() {
         team: teams[1].name
       },
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Isadora Morari',
         position: 'Data intern StartDB',
@@ -138,6 +152,7 @@ function App() {
         team: teams[2].name
       },
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Glauber Araújo',
         position: 'SRE intern StartDB',
@@ -145,6 +160,7 @@ function App() {
         team: teams[2].name
       },
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Laura Ferré',
         position: 'Software Development intern StartDB',
@@ -152,6 +168,7 @@ function App() {
         team: teams[2].name
       },
       {
+        favorite: false,
         id: uuidv4(),
         name: 'Bruno Xavier',
         position: 'RPA intern StartDB',
@@ -183,6 +200,14 @@ function App() {
     setTeams([...teams, { ...newTeam, id: uuidv4() }]);
 }
 
+  function favoriteEmployee(id) {
+    setEmployees(employees.map(employee => {
+      if (employee.id === id) {
+        employee.favorite = !employee.favorite;
+      }
+      return employee;
+    }))
+  }
   return (
     <div className="App">
       <Banner />
@@ -194,6 +219,7 @@ function App() {
       <section>
         {teams.map((team, ind) => 
           <Team 
+            whenfavorited={favoriteEmployee}
             changeColor={changeColorTeam}
             key={ind} 
             team={team} 

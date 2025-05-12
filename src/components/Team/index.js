@@ -2,7 +2,7 @@ import Employee from '../Employee';
 import './Team.css';
 import hexToRgba from 'hex-to-rgba';
 
-const Team = ({team, employees, whenDeleting, changeColor}) => {
+const Team = ({team, employees, whenDeleting, changeColor, whenfavorited}) => {
 
     return (
         employees.length > 0 &&
@@ -23,6 +23,7 @@ const Team = ({team, employees, whenDeleting, changeColor}) => {
                         employee={employee}
                         backgroundColor={team.color}
                         whenDeleting={whenDeleting}
+                        whenfavorited={whenfavorited}
                     /> 
                 ))}     
             </div>
