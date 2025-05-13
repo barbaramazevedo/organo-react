@@ -15,9 +15,16 @@
 
 .team .employees {
     display: flex;
-    justify-content: space-around;
-    margin-top: 32px;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin: 32px auto 0;
+    max-width: calc(280px * 4 + 16px * 3);
+}
+
+.employee {
+    flex: 0 0 280px; /* Não cresce, não encolhe, largura base 280px */
+    height: 400px; /* Altura fixa */
 }
 
 .input-color {

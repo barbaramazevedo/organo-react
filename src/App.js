@@ -1,233 +1,113 @@
+import { useState, useEffect } from 'react';
+import Button from './components/Button';
 import Banner from './components/Banner';
 import Form from './components/Form';
 import Footer from './components/Footer';
 import Team from './components/Team';
-import { useState, useEffect } from 'react';
+import { IoPersonAddSharp } from "react-icons/io5";
 import { v4 as uuidv4 } from 'uuid';
 
 function App() {
-
-  const [teams, setTeams] = useState ([
-    {
-      id: uuidv4(),
-      name: 'Água',
-      color: '#82CFFA',
-    },
-    {
-      id: uuidv4(),
-      name: 'Ar',
-      color: '#57C278',
-    },
-    {
-      id: uuidv4(),
-      name: 'Digital',
-      color: '#FFBA05',
-    },
-    {
-      id: uuidv4(),
-      name: 'Fogo',
-      color: '#E06B69',
-    },
-    {
-      id: uuidv4(),
-      name: 'Terra',
-      color: '#FF8A29',
-    }
-  ])
-
+  const [showForm, setShowForm] = useState(false);
+  const [teams, setTeams] = useState([]);
   const [employees, setEmployees] = useState([]);
 
-  useEffect(() => {
-    const initialEmployees = [
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Bárbara Azevedo',
-        position: 'Software Development intern StartDB',
-        image: 'https://avatars.githubusercontent.com/u/173216654?v=4',
-        team: teams[4].name
-      },
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Eduarda Groehs',
-        position: 'Software Development intern StartDB',
-        image: 'https://avatars.githubusercontent.com/u/122320700?v=4',
-        team: teams[4].name
-      },
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Vitória de Camargo',
-        position: 'QA intern StartDB',
-        image: 'https://avatars.githubusercontent.com/u/147994680?v=4',
-        team: teams[3].name
-      },
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Nicolas Berlato',
-        position: 'Software Development intern StartDB',
-        image: 'https://pbs.twimg.com/profile_images/1369810664919867396/P-_LKrnL_400x400.jpg',
-        team: teams[2].name
-      },
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Gustavo Silva',
-        position: 'Software Development intern StartDB',
-        image: 'https://avatars.githubusercontent.com/u/169389502?v=4',
-        team: teams[0].name
-      },
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Suene Souza',
-        position: 'Software Development intern StartDB',
-        image: 'https://avatars.githubusercontent.com/u/129241083?v=4',
-        team: teams[2].name
-      },
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Rachel Pizane',
-        position: 'Software Development intern StartDB',
-        image: 'https://avatars.githubusercontent.com/u/150784556?v=4',
-        team: teams[0].name
-      },
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Lucas Miranda',
-        position: 'QA intern StartDB',
-        image: 'https://avatars.githubusercontent.com/u/150044701?v=4',
-        team: teams[1].name
-      },
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Danielly Marques',
-        position: 'Software Development intern StartDB',
-        image: 'https://avatars.githubusercontent.com/u/147952313?v=4',
-        team: teams[1].name
-      },
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Lucas Azevedo',
-        position: 'Data intern StartDB',
-        image: 'https://avatars.githubusercontent.com/u/134238534?v=4',
-        team: teams[2].name
-      },
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Ana Cagliari',
-        position: 'Software Development intern StartDB',
-        image: 'https://avatars.githubusercontent.com/u/111251330?v=4',
-        team: teams[0].name
-      },
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Gabriela de Castro',
-        position: 'Software Development intern StartDB',
-        image: 'https://avatars.githubusercontent.com/u/169320236?v=4',
-        team: teams[0].name
-      },
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Sylvia Vitória',
-        position: 'Software Development intern StartDB',
-        image: 'https://avatars.githubusercontent.com/u/126926732?v=4',
-        team: teams[1].name
-      },
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Isadora Morari',
-        position: 'Data intern StartDB',
-        image: 'https://media.licdn.com/dms/image/v2/D4D03AQGKkDwJ-hLEiA/profile-displayphoto-shrink_800_800/B4DZXseJz_HkAk-/0/1743429083787?e=1752105600&v=beta&t=RDfhXVjes-uvFJkQqYZXCq630cSC6znW4YVw321e504',
-        team: teams[2].name
-      },
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Glauber Araújo',
-        position: 'SRE intern StartDB',
-        image: 'https://media.licdn.com/dms/image/v2/C4D03AQHP0jIQ_YRFmA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1661382543514?e=1752105600&v=beta&t=XvIF1eHLYDQZAETzDt2TtdZCqQF3uwPGoQizuGxjWmA',
-        team: teams[2].name
-      },
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Laura Ferré',
-        position: 'Software Development intern StartDB',
-        image: 'https://media.licdn.com/dms/image/v2/D4D03AQEb24xWO5Xc_w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1691065317322?e=1752105600&v=beta&t=Pxv1-sZkU0ZRidw2X5ngQcCIAnOKmxEYMwRgBRNtFAo',
-        team: teams[2].name
-      },
-      {
-        favorite: false,
-        id: uuidv4(),
-        name: 'Bruno Xavier',
-        position: 'RPA intern StartDB',
-        image: 'https://media.licdn.com/dms/image/v2/C4D03AQEnXF59hATHjg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1652049958947?e=1752105600&v=beta&t=JQUDPc-6somCiy1b5xtTfdrEoZsbm_0LNFrcJ3SqM94',
-        team: teams[2].name
-      }
-    ];
-    setEmployees(initialEmployees);
-  }, []);
+useEffect(() => {
+  fetch('http://localhost:3001/teams')
+    .then(res => res.json())
+    .then(data => setTeams(data.map(team => ({
+      ...team,
+      id: team.id || uuidv4() 
+    }))));
 
-  function deletingEmployee(id) {
-    setEmployees(employees.filter(employee => employee.id !== id))
+  fetch('http://localhost:3001/employees')
+    .then(res => res.json())
+    .then(data => setEmployees(data.map(employee => ({
+      ...employee,
+      id: employee.id || uuidv4(),
+      team: employee.team || '' 
+    }))));
+}, []);
+
+   function deletingEmployee(id) {
+    fetch(`http://localhost:3001/employees/${id}`, { method: 'DELETE' })
+      .then(() => setEmployees(employees.filter(employee => employee.id !== id)));
   }
 
-  const toTheNewEmployeeAdded = (employee) => {
-    setEmployees([...employees, { ...employee, id: uuidv4() }]);
+   function toTheNewEmployeeAdded(employee) {
+    const newEmployee = { ...employee, id: uuidv4(), favorite: false };
+    fetch('http://localhost:3001/employees', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newEmployee)
+    }).then(() => setEmployees([...employees, newEmployee]));
   }
 
   function changeColorTeam(color, id) {
-    setTeams(teams.map(team => {
-      if(team.id === id) {
-        team.color = color;
-      }
-      return team;
-    }));
+    fetch(`http://localhost:3001/teams/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ color })
+    }).then(() => {
+      setTeams(teams.map(team => team.id === id ? { ...team, color } : team));
+    });
   }
 
-  function registerTeam(newTeam) {
-    setTeams([...teams, { ...newTeam, id: uuidv4() }]);
-}
+   function registerTeam(newTeam) {
+    const teamWithId = { ...newTeam, id: uuidv4() };
+    fetch('http://localhost:3001/teams', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(teamWithId)
+    }).then(() => setTeams([...teams, teamWithId]));
+  }
 
   function favoriteEmployee(id) {
-    setEmployees(employees.map(employee => {
-      if (employee.id === id) {
-        employee.favorite = !employee.favorite;
-      }
-      return employee;
-    }))
+    const updatedEmployees = employees.map(employee => 
+      employee.id === id ? { ...employee, favorite: !employee.favorite } : employee
+    );
+    fetch(`http://localhost:3001/employees/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ favorite: !employees.find(e => e.id === id).favorite })
+    }).then(() => setEmployees(updatedEmployees));
   }
+
   return (
     <div className="App">
       <Banner />
-      <Form 
-        whenCreatingTeam={registerTeam}
-        teams={teams.map(team => team.name)}
-        toTheNewEmployeeAdded = {toTheNewEmployeeAdded}
-      />
-      <section>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Button onClick={() => setShowForm(!showForm)}>
+          {showForm 
+            ? 'Hide Form' 
+            : (<div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <IoPersonAddSharp color='white' />
+              <span>Add Employee/Team</span>
+            </div>)
+          }
+        </Button>
+      </div>
+      {showForm && (
+        <Form 
+          whenCreatingTeam={registerTeam}
+          teams={teams.map(team => team.name)}
+          toTheNewEmployeeAdded={toTheNewEmployeeAdded}
+        />
+      )}
+      
+       <section>
         {teams.map((team, ind) => 
-          <Team 
+          <Team
             whenfavorited={favoriteEmployee}
             changeColor={changeColorTeam}
-            key={ind} 
-            team={team} 
+            key={ind}
+            team={team}
             employees={employees.filter(employee => employee.team === team.name)}
             whenDeleting={deletingEmployee}
           />
         )}
-      </section>  
+      </section> 
+      
       <Footer />
     </div>
   );
