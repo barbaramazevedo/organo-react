@@ -45,7 +45,7 @@ npm run dev
 
 ## 🔄 Data Flow
 
-![Data Flow](/public/images/data_flow.png.png)
+![Data Flow](/public/images/data_flow.png)
 
 
 ## 📸 Screenshots
