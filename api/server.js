@@ -1,9 +1,9 @@
-const jsonServer = require('json-server')
-const server = jsonServer.create()
-const router = jsonServer.router(require.resolve('./db.json'))
-const middlewares = jsonServer.defaults()
+const jsonServer = require('json-server');
+const server = jsonServer.create();
+const router = jsonServer.router('db.json');
+const middlewares = jsonServer.defaults();
 
-server.use(middlewares)
+server.use(middlewares);
 server.use('/api', router);
 
-module.exports = server
+module.exports = server;
