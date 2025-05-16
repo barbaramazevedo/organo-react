@@ -1,29 +1,57 @@
-# Project: Team Organizer - Start DB
+# Team Organizer - Start DB
 
 This project is a web application built with React to register and display team member cards for the Start DB program, organizing them by unit. The interface features a dynamic form where users can enter the member's name, role, image, and unit. Upon submission, a new customized card is generated and displayed in the section corresponding to the selected unit.
 
-## Key Features
+## ✨ Features
 
-- 🗂️ Register team members with name, role, image, and unit  
-- 🗂️ Dynamic display of cards organized by units from DBServer  
-- 🗂️ Responsive and interactive design  
-- 🗂️ Real-time updates using **props** and **state**  
-- 🗂️ Reusable and well-structured component-based architecture  
+- [x] Add/remove collaborators
+- [x] Create new teams
+- [x] Local data persistence
+- [x] Responsive interface
+- [x] Form toggle
 
 This project aims to practice form handling, state management, and data organization using React components.
 
-## Getting Started with Create React App
+## 🛠 Prerequisites
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Node.js (v16+)
+- npm ou yarn
+- Git (to clone the repository)
 
-## Available Scripts
+## 🚀 Installation and Execution
 
-In the project directory, you can run:
+### 1. Clone the repository
+```bash
+git clone https://github.com/barbaramazevedo/organo-react.git
+cd organo
+```
+### 2. Install dependencies
+```bash
+npm install
+```
+### 3. Start the application
+```bash
+npm run dev
+```
+## 🌐 API Endpoints
 
-### `npm start`
+| Method  | Endpoint            | Description                     |
+|---------|---------------------|---------------------------------|
+| GET     | `/employees`        | List all employees              |
+| GET     | `/teams`            | List all teams                  |
+| POST    | `/employees`        | Add a new employee              |
+| PUT     | `/employees/:id`    | Update an employee              |
+| DELETE  | `/employees/:id`    | Remove an employee              |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🔄 Data Flow
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![Data Flow](./organo/public/images/data_flow.png.png)
+
+
+## 📸 Screenshots
+
+![Formulário](./organo/public/images/Cards_Employees.png)
+![Tela Principal](./organo/public/images/form.png) 
+
+
+
