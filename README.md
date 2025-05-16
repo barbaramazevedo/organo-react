@@ -45,13 +45,13 @@ npm run dev
 
 ## 🔄 Data Flow
 
-![Data Flow](./organo/public/images/data_flow.png.png)
+![Data Flow](/public/images/data_flow.png.png)
 
 
 ## 📸 Screenshots
 
-![Formulário](./organo/public/images/Cards_Employees.png)
-![Tela Principal](./organo/public/images/form.png) 
+![Formulário](/public/images/Cards_Employees.png)
+![Tela Principal](/public/images/form.png) 
 
 
 
