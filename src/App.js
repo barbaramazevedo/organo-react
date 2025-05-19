@@ -6,6 +6,8 @@ import Footer from './components/Footer';
 import Team from './components/Team';
 import { IoPersonAddSharp } from "react-icons/io5";
 import { v4 as uuidv4 } from 'uuid';
+import { database, ref, onValue, set, remove } from "./firebase.js";
+import { initAuth } from "./firebase";
 
 function App() {
   const [showForm, setShowForm] = useState(false);
@@ -13,64 +15,76 @@ function App() {
   const [employees, setEmployees] = useState([]);
 
 useEffect(() => {
-  fetch('http://localhost:3001/teams')
-    .then(res => res.json())
-    .then(data => setTeams(data.map(team => ({
-      ...team,
-      id: team.id || uuidv4() 
-    }))));
+  initAuth();
 
-  fetch('http://localhost:3001/employees')
-    .then(res => res.json())
-    .then(data => setEmployees(data.map(employee => ({
-      ...employee,
-      id: employee.id || uuidv4(),
-      team: employee.team || '' 
-    }))));
-}, []);
+  if (process.env.NODE_ENV === 'production') {
+    console.log("Production mode - extra checks enabled");
+  }
 
-   function deletingEmployee(id) {
-    fetch(`http://localhost:3001/employees/${id}`, { method: 'DELETE' })
-      .then(() => setEmployees(employees.filter(employee => employee.id !== id)));
+    const teamsRef = ref(database, 'teams');
+    onValue(teamsRef, (snapshot) => {
+      const data = snapshot.val();
+      setTeams(data ? Object.values(data) : []);
+    });
+
+  const employeesRef = ref(database, 'employees');
+    onValue(employeesRef, (snapshot) => {
+      const data = snapshot.val();
+      setEmployees(data ? Object.values(data) : []);
+    });
+  }, []);
+
+    function deletingEmployee(id) {
+      if (process.env.NODE_ENV === 'production') {
+        if (!id || typeof id !== 'string') {
+          console.error("Deletion attempt with invalid ID");
+          return;
+        }
+      }
+      const employeeRef = ref(database, `employees/${id}`);
+      remove(employeeRef).then(() => {
+        setEmployees(employees.filter(emp => emp.id !== id));
+      });
   }
 
    function toTheNewEmployeeAdded(employee) {
+
+    if (process.env.NODE_ENV === 'production') {
+      if (!employee.name || !employee.team) {
+        console.error("incomplete data:", employee);
+        return;
+      }
+    }
     const newEmployee = { ...employee, id: uuidv4(), favorite: false };
-    fetch('http://localhost:3001/employees', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newEmployee)
-    }).then(() => setEmployees([...employees, newEmployee]));
+    const employeeRef = ref(database, `employees/${newEmployee.id}`);
+    set(employeeRef, newEmployee).then(() => {
+      setEmployees([...employees, newEmployee]);
+    });
   }
 
   function changeColorTeam(color, id) {
-    fetch(`http://localhost:3001/teams/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ color })
-    }).then(() => {
+    const teamRef = ref(database, `teams/${id}/color`);
+    set(teamRef, color).then(() => {
       setTeams(teams.map(team => team.id === id ? { ...team, color } : team));
     });
   }
 
-   function registerTeam(newTeam) {
-    const teamWithId = { ...newTeam, id: uuidv4() };
-    fetch('http://localhost:3001/teams', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(teamWithId)
-    }).then(() => setTeams([...teams, teamWithId]));
+   function favoriteEmployee(id) {
+    const isFavorite = !employees.find(e => e.id === id).favorite;
+    const employeeRef = ref(database, `employees/${id}/favorite`);
+    set(employeeRef, isFavorite).then(() => {
+      setEmployees(employees.map(emp => 
+        emp.id === id ? { ...emp, favorite: isFavorite } : emp
+      ));
+    });
   }
 
-  function favoriteEmployee(id) {
-    const updatedEmployees = employees.map(employee => 
-      employee.id === id ? { ...employee, favorite: !employee.favorite } : employee
-    );
-    fetch(`http://localhost:3001/employees/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ favorite: !employees.find(e => e.id === id).favorite })
-    }).then(() => setEmployees(updatedEmployees));
+  function registerTeam(newTeam) {
+    const teamWithId = { ...newTeam, id: uuidv4() };
+    const teamRef = ref(database, `teams/${teamWithId.id}`);
+    set(teamRef, teamWithId).then(() => {
+      setTeams([...teams, teamWithId]);
+    });
   }
 
   return (
