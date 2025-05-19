@@ -1,12 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInAnonymously } from "firebase/auth";
 import { 
   getDatabase, 
   ref, 
   onValue, 
   set, 
-  remove, 
-  update 
+  remove 
 } from "firebase/database";
 
 const firebaseConfig = {
@@ -21,20 +19,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-const auth = getAuth(app);
-
-export const initAuth = async () => {
-  await signInAnonymously(auth);
-  console.log("Autenticado anonimamente");
-};
 
 export { 
-  database, 
-  ref, 
-  onValue, 
-  set, 
-  remove, 
-  update,
-  auth,
-  signInAnonymously
+  database,
+  ref,   
+  onValue,
+  set,
+  remove
 };

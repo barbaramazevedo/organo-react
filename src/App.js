@@ -7,51 +7,47 @@ import Team from './components/Team';
 import { IoPersonAddSharp } from "react-icons/io5";
 import { v4 as uuidv4 } from 'uuid';
 import { database, ref, onValue, set, remove } from "./firebase.js";
-import { initAuth } from "./firebase";
 
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [teams, setTeams] = useState([]);
   const [employees, setEmployees] = useState([]);
 
-useEffect(() => {
-  initAuth();
-
-  if (process.env.NODE_ENV === 'production') {
-    console.log("Production mode - extra checks enabled");
-  }
-
+  useEffect(() => {
+    console.log("Ambiente:", process.env.NODE_ENV);
+    
     const teamsRef = ref(database, 'teams');
     onValue(teamsRef, (snapshot) => {
       const data = snapshot.val();
+      console.log("Dados de teams:", data); // Debug
       setTeams(data ? Object.values(data) : []);
     });
 
-  const employeesRef = ref(database, 'employees');
+    const employeesRef = ref(database, 'employees');
     onValue(employeesRef, (snapshot) => {
       const data = snapshot.val();
+      console.log("Dados de employees:", data); // Debug
       setEmployees(data ? Object.values(data) : []);
     });
   }, []);
 
-    function deletingEmployee(id) {
-      if (process.env.NODE_ENV === 'production') {
-        if (!id || typeof id !== 'string') {
-          console.error("Deletion attempt with invalid ID");
-          return;
-        }
+  function deletingEmployee(id) {
+    if (process.env.NODE_ENV === 'production') {
+      if (!id || typeof id !== 'string') {
+        console.error("Tentativa de deletar com ID inválido");
+        return;
       }
-      const employeeRef = ref(database, `employees/${id}`);
-      remove(employeeRef).then(() => {
-        setEmployees(employees.filter(emp => emp.id !== id));
-      });
+    }
+    const employeeRef = ref(database, `employees/${id}`);
+    remove(employeeRef).then(() => {
+      setEmployees(employees.filter(emp => emp.id !== id));
+    });
   }
 
-   function toTheNewEmployeeAdded(employee) {
-
+  function toTheNewEmployeeAdded(employee) {
     if (process.env.NODE_ENV === 'production') {
       if (!employee.name || !employee.team) {
-        console.error("incomplete data:", employee);
+        console.error("Dados incompletos:", employee);
         return;
       }
     }
@@ -69,7 +65,7 @@ useEffect(() => {
     });
   }
 
-   function favoriteEmployee(id) {
+  function favoriteEmployee(id) {
     const isFavorite = !employees.find(e => e.id === id).favorite;
     const employeeRef = ref(database, `employees/${id}/favorite`);
     set(employeeRef, isFavorite).then(() => {
@@ -109,7 +105,7 @@ useEffect(() => {
         />
       )}
       
-       <section>
+      <section>
         {teams.map((team, ind) => 
           <Team
             whenfavorited={favoriteEmployee}
