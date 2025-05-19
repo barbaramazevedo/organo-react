@@ -19,14 +19,14 @@ function App() {
     const teamsRef = ref(database, 'teams');
     onValue(teamsRef, (snapshot) => {
       const data = snapshot.val();
-      console.log("Dados de teams:", data); // Debug
+      console.log("Dados de teams:", data);
       setTeams(data ? Object.values(data) : []);
     });
 
     const employeesRef = ref(database, 'employees');
-    onValue(employeesRef, (snapshot) => {
+onValue(employeesRef, (snapshot) => {
       const data = snapshot.val();
-      console.log("Dados de employees:", data); // Debug
+      console.log("Dados de employees:", data);
       setEmployees(data ? Object.values(data) : []);
     });
   }, []);
