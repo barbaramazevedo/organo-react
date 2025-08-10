@@ -23,12 +23,38 @@
 }
 
 .employee {
-    flex: 0 0 280px; /* Não cresce, não encolhe, largura base 280px */
-    height: 400px; /* Altura fixa */
+    flex: 0 0 280px;
+    height: 400px;
 }
 
 .input-color {
     position: absolute;
     top: 20px;
     right: 50px;
+}
+
+.team-actions {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    display: flex;
+    align-items: center;
+    gap: 500px;
+}
+
+.btn-delete-team{
+    position: absolute;
+    top: 20px;
+    right: 0;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.2);
+    }
 }

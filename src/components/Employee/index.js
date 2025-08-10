@@ -3,6 +3,8 @@ import { MdOutlineClose, MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
 const Employee = ({employee, backgroundColor, whenDeleting, whenfavorited }) => {
 
+    console.log('Imagem do funcionário:', employee.image);
+
     function favorited() {
         whenfavorited(employee.id);
     }

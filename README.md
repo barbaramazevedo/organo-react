@@ -1,12 +1,12 @@
 # Team Organizer - Start DB
 
-This project is a web application built with React to register and display team member cards for the Start DB program, organizing them by unit. The interface features a dynamic form where users can enter the member's name, role, image, and unit. Upon submission, a new customized card is generated and displayed in the section corresponding to the selected unit.
+This project is a web application built with React to register and display team member cards for the Start DB program, organizing them by team/unit. The interface features a dynamic form where users can enter the member's name, role, image, and team. Upon submission, a new customized card is generated and displayed in the section corresponding to the selected team.
 
 ## ✨ Features
 
 - [x] Add/remove collaborators
 - [x] Create new teams
-- [x] Local data persistence
+- [x] Local data persistence using localStorage
 - [x] Responsive interface
 - [x] Form toggle
 
@@ -33,15 +33,11 @@ npm install
 ```bash
 npm run dev
 ```
-## 🌐 API Endpoints
+## 💾 Data Persistence
 
-| Method  | Endpoint            | Description                     |
-|---------|---------------------|---------------------------------|
-| GET     | `/employees`        | List all employees              |
-| GET     | `/teams`            | List all teams                  |
-| POST    | `/employees`        | Add a new employee              |
-| PUT     | `/employees/:id`    | Update an employee              |
-| DELETE  | `/employees/:id`    | Remove an employee              |
+Employee and team data are stored locally in the browser using localStorage. This means information is retained even after closing the tab or browser, without requiring any external server or API.
+
+You can reset the data to the default initial state by clicking the Reset Data button in the interface.
 
 ## 🔄 Data Flow
 
