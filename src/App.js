@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
+import { IoPersonAddSharp } from "react-icons/io5";
+import { v4 as uuidv4 } from 'uuid';
+import { RxReset } from "react-icons/rx";
 import Button from './components/Button';
 import Banner from './components/Banner';
 import Form from './components/Form';
 import Footer from './components/Footer';
 import Team from './components/Team';
-import { IoPersonAddSharp } from "react-icons/io5";
-import { v4 as uuidv4 } from 'uuid';
-import { RxReset } from "react-icons/rx";
 
 const TEAMS_STORAGE_KEY = 'teams';
 const EMPLOYEES_STORAGE_KEY = 'employees';
@@ -202,7 +202,7 @@ function App() {
 
   function toTheNewEmployeeAdded(employee) {
     if (!employee.name || !employee.team) {
-      console.error("Dados incompletos:", employee);
+      console.error("Incomplete data:", employee);
       return;
     }
     const newEmployee = { ...employee, id: uuidv4(), favorite: false };
@@ -219,7 +219,7 @@ function App() {
 
   function registerTeam(newTeam) {
     if (!newTeam.name || !newTeam.color) {
-      console.error("Dados incompletos do time:", newTeam);
+      console.error("Incomplete team data:", newTeam);
       return;
     }
     const teamWithId = { ...newTeam, id: uuidv4() };
@@ -254,7 +254,7 @@ function App() {
       </Button>
       <Button onClick={resetData} style={{ backgroundColor: '#6278f7' }}>
         <RxReset color='white' />
-        Resetar Dados
+        Reset Data
       </Button>
       </div>
 
